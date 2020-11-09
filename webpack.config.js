@@ -11,7 +11,12 @@ module.exports = {
         rules: [
             {
                 test: /\.ts$/,
-                use: 'ts-loader'
+                use: {
+                    loader: 'ts-loader',
+                    options: {
+                        configFile: 'tsconfig.json'
+                    }
+                }
             },
             {
                 test: /\.(sc|c)ss/,
@@ -30,5 +35,6 @@ module.exports = {
         extensions: [
             '.ts', '.js'
         ]
-    }
+    },
+    devtool: "source-map"
 }

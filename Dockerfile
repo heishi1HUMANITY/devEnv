@@ -1,8 +1,9 @@
 FROM ubuntu:20.04
 
 WORKDIR /workspace
-RUN mkdir public
+RUN mkdir public/js -p
 RUN mkdir src
+RUN touch ./src/main.ts
 
 RUN apt update
 RUN apt full-upgrade -y
@@ -21,8 +22,8 @@ RUN apt purge nodejs npm -y
 RUN apt autoremove -y
 
 RUN npm init -y
-RUN npm i -g webpack webpack-cli 
-RUN npm i typescript ts-loader style-loader css-loader sass sass-loader node-sass --save-dev
+RUN npm i webpack webpack-cli typescript ts-loader style-loader css-loader sass sass-loader node-sass prettier express --save-dev
+ENV PATH $PATH:./node_modules/.bin
 
 ADD tsconfig.json /workspace
 ADD webpack.config.js /workspace
