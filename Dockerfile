@@ -1,33 +1,19 @@
-FROM ubuntu:20.04
+FROM alpine:latest
 
 WORKDIR /workspace
-RUN mkdir public/js -p
-RUN touch ./public/index.html
-RUN mkdir src
-RUN touch ./src/main.ts
 
-RUN apt update
-RUN apt full-upgrade -y
-RUN apt install software-properties-common -y
-RUN add-apt-repository ppa:git-core/ppa -y
-RUN apt update
-
-RUN apt install curl -y
-
-RUN apt install git -y
-
-RUN apt install nodejs npm -y
-RUN npm i -g n
-RUN n stable
-RUN apt purge nodejs npm -y
-RUN apt autoremove -y
-RUN apt clean
-
-RUN git init
-RUN npm init -y
-RUN npm i webpack webpack-cli typescript ts-loader style-loader css-loader sass sass-loader node-sass prettier eslint express --save-dev
+RUN mkdir public/js -p && \
+    touch ./public/index.html && \
+    mkdir src && \
+    touch ./src/main.ts && \
+    apk update && \
+    apk --update --no-cache add curl git nodejs npm && \
+    git init && \
+    npm init -y && \
+    npm i webpack webpack-cli typescript ts-loader style-loader css-loader postcss-loader postcss-nested autoprefixer prettier eslint express --save-dev
 
 ENV PATH $PATH:./node_modules/.bin
 
 ADD tsconfig.json /workspace
 ADD webpack.config.js /workspace
+ADD postcss.config.js /workspace

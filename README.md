@@ -2,20 +2,14 @@
 
 - ディストリ
 
-  - Ubuntu 20.04
+  - Alpine latest
 
-- apt でインストールしたもの
+- apk でインストールしたもの
 
-  - software-properties-common
   - curl
   - git
-  - nodejs(後に削除)
-  - npm(後に削除)
-
-- npm でグローバルインストールしたもの
-
-  - n(Node.js のバージョン管理のため)
-    - なお、n で Node.js と npm を入れ直しているため、apt で入れたものは削除済み
+  - nodejs
+  - npm
 
 - npm で devDependencies として入れたもの
   - webpack
@@ -24,9 +18,9 @@
   - ts-loader
   - style-loader
   - css-loader
-  - sass
-  - sass-loader
-  - node-sass
+  - postcss-loader
+  - postcss-nested
+  - autoprefixer
   - prettier
   - eslint
   - express
@@ -39,6 +33,7 @@
 ├── node_modules
 ├── package-lock.json
 ├── package.json
+├── postcss.config.js
 ├── public
 │   ├── index.html
 │   └── js

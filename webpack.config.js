@@ -19,15 +19,8 @@ module.exports = {
         },
       },
       {
-        test: /\.(sc|c)ss/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: { url: false },
-          },
-          'sass-loader',
-        ],
+        test: /\.(c|pc|sc)ss$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
   },
